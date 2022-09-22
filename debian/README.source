@@ -1,0 +1,83 @@
+====================================================
+Debian source package for ‘jquery-throttle-debounce’
+====================================================
+
+Build source package from VCS
+=============================
+
+The source for the Debian packaging is managed in these conventional
+Git branches:
+
+master
+    The current released code base.
+
+packaging
+    Debian packaging development branch.
+
+upstream
+    Upstream source code base, as imported from tarballs.
+
+pristine-tar
+    Metadata for reproducibly generating upstream tarball.
+
+To build the source package from the Git VCS, use the Debian ‘gitpkg’
+tool to generate all the files::
+
+    $ git checkout master
+    $ gitpkg packaging upstream
+
+The ‘dpkg-source’ process will complain about the “deletion” of
+upstream source. This is because the upstream source is not present at
+all in the ‘packaging’ branch exported, but in the ‘upstream’ branch.
+The upstream source is safely exported earlier in its own tarball.
+
+The generated source package is the source control file
+‘../deb-packages/jquery-throttle-debounce/jquery-throttle-debounce_$DEBIANVER.dsc’
+and its associated files in that directory.
+
+
+Omitted components
+==================
+
+Components that have been omitted from Debian because they do not
+constitude the source form of the work:
+
+* The compiled library.
+
+  Files: *.min.js
+
+* The compiled documentation.
+
+  Files: docs/
+  Comment:
+      The files in this directory declare they were generated with
+      “Natural Docs”. The source documents are not part of the
+      distribution.
+
+* Compiled files in the examples.
+
+  Files: examples/index.css
+  Comment:
+      The CSS file in this directory is evidently compiled from source
+      documents that are not part of the distribution.
+
+* Bundled third-party libraries.
+
+  Files: shared/ba-debug.js
+  Comment:
+      Bundled copy of the JavaScript Debug library.
+
+  Files: shared/jquery-*.js
+  Comment:
+      Bundled copy of versions of th jQuery library.
+
+  Files: shared/qunit.js
+  Comment:
+      Bundled copy of the QUnit library.
+
+  Files: shared/SyntaxHighlighter/
+  Comment:
+      Bundled copy of the SyntaxHighlighter library.
+
+
+ -- Ben Finney <ben+debian@benfinney.id.au>, Wed,  6 Jul 2016 23:36:40 +1000

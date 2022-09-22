@@ -1,0 +1,15 @@
+jquery-throttle-debounce (1.1+dfsg.1-1.1) unstable; urgency=medium
+
+  * Non maintainer upload by the Reproducible Builds team.
+  * No source change upload to rebuild on buildd with .buildinfo files.
+
+ -- Holger Levsen <holger@debian.org>  Mon, 28 Dec 2020 14:52:30 +0100
+
+jquery-throttle-debounce (1.1+dfsg.1-1) unstable; urgency=medium
+
+  * The “Ashraf Fayad” release.
+  * Initial Debian release.
+    (Closes: bug#829407)
+
+ -- Ben Finney <ben+debian@benfinney.id.au>  Sun, 03 Jul 2016 19:14:22 +1000
+

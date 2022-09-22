@@ -1,0 +1,83 @@
+#! /usr/bin/make -f
+#
+# debian/rules
+# Part of Debian ‘jquery-throttle-debounce’ package.
+#
+# Copyright © 2008–2016 Ben Finney <ben+debian@benfinney.id.au>
+#
+# This is free software; you may copy, modify, and/or distribute this
+# work under the terms of the GNU General Public License as published
+# by the Free Software Foundation; version 3 of that License or later.
+# No warranty expressed or implied.
+# See the file '/usr/share/common-licenses/GPL-3' for details.
+
+JAVASCRIPT_NAMES = \
+	jquery.ba-throttle-debounce
+
+SOURCE_DIR = $(CURDIR)
+
+JAVASCRIPT_SUFFIX = .js
+COMPILED_JAVASCRIPT_SUFFIX = .min${JAVASCRIPT_SUFFIX}
+javascript_files = $(addsuffix ${JAVASCRIPT_SUFFIX},${javascript_names})
+compiled_javascript_files = $(addsuffix ${COMPILED_JAVASCRIPT_SUFFIX},\
+	${JAVASCRIPT_NAMES})
+compiled_javascript_paths = $(addprefix ${SOURCE_DIR}/,\
+	${compiled_javascript_files})
+GENERATED_FILES += ${compiled_javascript_files}
+
+MINIFY = uglifyjs
+
+
+%:
+	dh $@
+
+
+.PHONY: get-packaged-orig-source
+get-packaged-orig-source:
+	$(uscan-download-source) --download-current-version
+
+# Policy §4.9 strongly recommends the ‘get-orig-source’ target:
+# “This target is optional, but providing it if possible is a good idea.”
+#
+# This target is an anomaly: per Policy §4.9, it fetches the *latest*
+# upstream source, regardless of this package's version. To fetch the
+# upstream source corresponding to this package's *declared* version
+# in ‘debian/changelog’, use ‘get-packaged-orig-source’ instead.
+.PHONY: get-orig-source
+get-orig-source:
+	$(uscan-download-source)
+
+get-orig-source get-packaged-orig-source: http_proxy =
+get-orig-source get-packaged-orig-source: makefile_dir = $(abspath $(dir $(firstword ${MAKEFILE_LIST})))
+get-orig-source get-packaged-orig-source: package_dir = $(abspath $(dir ${makefile_dir}))
+
+define uscan-download-source
+	uscan --noconf --verbose \
+	    --force-download \
+	    --rename \
+	    --destdir=$(CURDIR) \
+	    --check-dirname-level=0 ${package_dir}
+endef # uscan-download-source
+
+
+.PHONY: override_dh_auto_build
+override_dh_auto_build: minify-javascript
+
+.PHONY: minify-javascript
+minify-javascript: ${compiled_javascript_paths}
+
+%${COMPILED_JAVASCRIPT_SUFFIX}: %${JAVASCRIPT_SUFFIX}
+	$(MINIFY) -o "$@" "$<"
+
+
+.PHONY: override_dh_clean
+override_dh_clean:
+	dh_clean
+	$(RM) -r ${GENERATED_FILES}
+
+
+# Local variables:
+# coding: utf-8
+# mode: makefile
+# End:
+# vim: fileencoding=utf-8 filetype=make :
