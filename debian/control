@@ -1,14 +1,15 @@
 Source: jquery-throttle-debounce
+Maintainer: Ben Finney <bignose@debian.org>
+Section: javascript
 Priority: optional
-Maintainer: Ben Finney <ben+debian@benfinney.id.au>
-Section: web
-Homepage: http://benalman.com/projects/jquery-throttle-debounce-plugin/
 Build-Depends:
-    node-uglify,
-    debhelper (>= 9~)
-Standards-Version: 3.9.8
-VCS-Git: https://notabug.org/bignose/debian_jquery-throttle-debounce.git
-VCS-Browser: https://notabug.org/bignose/debian_jquery-throttle-debounce/
+    uglifyjs,
+    debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: http://benalman.com/projects/jquery-throttle-debounce-plugin/
+VCS-Git: https://salsa.debian.org/bignose/pkg-jquery-throttle-debounce.git
+VCS-Browser: https://salsa.debian.org/bignose/pkg-jquery-throttle-debounce/
+Rules-Requires-Root: no
 
 Package: libjs-jquery-throttle-debounce
 Architecture: all
