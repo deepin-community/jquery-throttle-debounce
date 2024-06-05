@@ -1,14 +1,14 @@
 # debian/watch
-# Debian uscan file for ‘jquery-throttle-debounce’ package.
-# Maual npage: ‘uscan(1)’.
+# Debian UScan configuration for this package.
+# Manual page: ‘uscan(1)’.
 
-# Version of Uscan configuration format.
+# Version of UScan configuration format.
 version = 4
 
 # Source tarball from Ben Alman's repository.
-opts="uversionmangle=s/(\d)-(rc|a|b|c)/$1~$2/,repack,repacksuffix=+dfsg.1,dversionmangle=s/\+dfsg\.\d+$//" \
-    https://github.com/cowboy/jquery-throttle-debounce/releases/ \
-    /cowboy/jquery-throttle-debounce/archive/(?:v)?(\d\S+)\.(?:tgz|tbz2|txz|tar\.(?:gz|bz2|xz)) \
+opts = "uversionmangle=s/(\d)-((?:rc|a|b|c)\d*)$/$1~$2/,repack,repacksuffix=+dfsg1,dversionmangle=s/\+dfsg\d+$//" \
+    https://github.com/cowboy/jquery-throttle-debounce/tags/ \
+    /cowboy/jquery-throttle-debounce/archive/refs/tags/(?:v)@ANY_VERSION@@ARCHIVE_EXT@ \
     debian uupdate
 
 

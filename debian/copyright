@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: jQuery throttle / debounce
 Upstream-Contact: Ben Alman <cowboy+contact@benalman.com>
 Source: https://github.com/cowboy/jquery-throttle-debounce/
@@ -14,7 +14,7 @@ Files-Excluded:
 Files: *
 Copyright:
  © 2010 Ben Alman <cowboy+contact@benalman.com>
-License: Expat or GPL
+License: Expat or GPL-2+
 License-Grant:
     All of the original JavaScript, PHP, and other code samples, plugins, and
     snippets offered on this site are Copyright © 2010 “Cowboy” Ben Alman and
@@ -30,7 +30,7 @@ Comment:
 
 Files: debian/*
 Copyright:
-    © 2009–2016 Ben Finney <ben+debian@benfinney.id.au>
+    © 2009–2022 Ben Finney <bignose@debian.org>
 License: GPL-3+
 License-Grant:
     This is free software; you may copy, modify, and/or distribute this work
@@ -58,9 +58,9 @@ License: Expat
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.
 
-License: GPL
-    On Debian systems, the complete text of the GNU General Public License can
-    be found in ‘/usr/share/common-licenses/GPL’.
+License: GPL-2+
+    On Debian systems, the complete text of the GNU General Public License
+    version 3 can be found in ‘/usr/share/common-licenses/GPL-2’.
 
 License: GPL-3+
     On Debian systems, the complete text of the GNU General Public License
